@@ -1,0 +1,68 @@
+<TRequerimiento>
+    <DireccionOrigen>
+        Calle 123 # 45 - 56
+    </DireccionOrigen>
+    <DireccionDestino>
+        Calle 165 # 54 - 65
+    </DireccionDestino>
+    <Requerimientos>
+        <Vehiculo color="rojo">
+            <Descripcion>
+                Vehículo con baúl grande
+            </Descripcion>
+        </Vehiculo>
+    </Requerimientos>
+</TRequerimiento>
+
+
+<TRequerimiento>
+    <DireccionOrigen>
+        Calle 111 # 22 - 33
+    </DireccionOrigen>
+    <DireccionDestino>
+        Calle 112 # 33 - 45
+    </DireccionDestino>
+    <Requerimientos>
+        <Musica>
+            <Descripcion>
+                Musiquita suave del Sech
+            </Descripcion>
+        </Musica>
+        <Vehiculo color="negro">
+            <Descripcion>
+                Vehículo con baúl grande
+            </Descripcion>
+        </Vehiculo>
+        <Ruta>
+            <Descripcion>
+                La más corta pls
+            </Descripcion>
+        </Ruta>
+    </Requerimientos>
+</TRequerimiento>
+
+<TRequerimiento>
+    <DireccionOrigen>
+        Calle 45 # 56 - 67
+    </DireccionOrigen>
+    <DireccionDestino>
+        Calle 12 # 25 - 38
+    </DireccionDestino>
+    <Requerimientos>
+        <Musica>
+            <Descripcion>
+                Algo del silvio rodriguez
+            </Descripcion>
+        </Musica>
+        <Vehiculo color="azul">
+            <Descripcion>
+                Vehículo con ventanas eléctricas
+            </Descripcion>
+        </Vehiculo>
+        <Ruta>
+            <Descripcion>
+                La que tenga menos huecos
+            </Descripcion>
+        </Ruta>
+    </Requerimientos>
+</TRequerimiento>

@@ -100,7 +100,14 @@ INSERT INTO solicitud VALUES (
 	'A',
 	125.33,
 	'X',
-	123456789,
+	'<TRequerimiento>
+    <DireccionOrigen>
+        Calle 123 # 45 - 56
+    </DireccionOrigen>
+    <DireccionDestino>
+        Calle 165 # 54 - 65
+    </DireccionDestino>
+</TRequerimiento>',
 	10.0,
 	10.0,
 	11.0,

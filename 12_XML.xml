@@ -1,0 +1,27 @@
+<!DOCTYPE TRequerimiento[
+<!ELEMENT TRequerimiento (DireccionOrigen, DireccionDestino, Requerimientos)>
+<!ELEMENT DireccionOrigen (#PCDATA)>
+<!ELEMENT DireccionDestino (#PCDATA)>
+<!ELEMENT Requerimientos (Vehiculo, Musica?, Ruta?)>
+<!ELEMENT Vehiculo (Descripcion)>
+<!ELEMENT Musica (Descripcion)>
+<!ELEMENT Ruta (Descripcion)>
+<!ELEMENT Descripcion (#PCDATA)>
+<!ATTLIST Vehiculo color CDATA #Required>
+]>
+
+<TRequerimiento>
+    <DireccionOrigen>
+    Calle 123 # 45 - 56
+    </DireccionOrigen>
+    <DireccionDestino>
+    Calle 165 # 54 - 65
+    </DireccionDestino>
+    <Requerimientos>
+        <Vehiculo color="rojo">
+            <Descripcion>
+            Vehículo con baúl grande
+            </Descripcion>
+        </Vehiculo>
+    </Requerimientos>
+</TRequerimiento>

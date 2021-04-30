@@ -1,0 +1,57 @@
+// EL REQUERIMIENTO DE VEHÍCULO ES OBLIGATORIO
+<TRequerimiento>
+    <DireccionOrigen>
+        Calle 123 # 45 - 56
+    </DireccionOrigen>
+    <DireccionDestino>
+        Calle 165 # 54 - 65
+    </DireccionDestino>
+</TRequerimiento>
+
+// LA DIRECCIÓN DE ORIGEN ES OBLIGATORIA
+<TRequerimiento>
+    <DireccionDestino>
+        Calle 112 # 33 - 45
+    </DireccionDestino>
+    <Requerimientos>
+        <Musica>
+            <Descripcion>
+                Musiquita suave del Sech
+            </Descripcion>
+        </Musica>
+        <Vehiculo>
+            <Descripcion>
+                Vehículo con baúl grande
+            </Descripcion>
+        </Vehiculo>
+        <Ruta>
+            <Descripcion>
+                La más corta pls
+            </Descripcion>
+        </Ruta>
+    </Requerimientos>
+</TRequerimiento>
+
+// LA DIRECCIÓN DE DESTINO ES OBLIGATORIA
+<TRequerimiento>
+    <DireccionDestino>
+        Calle 12 # 25 - 38
+    </DireccionDestino>
+    <Requerimientos>
+        <Musica>
+            <Descripcion>
+                Algo del silvio rodriguez
+            </Descripcion>
+        </Musica>
+        <Vehiculo>
+            <Descripcion>
+                Vehículo con ventanas eléctricas
+            </Descripcion>
+        </Vehiculo>
+        <Ruta>
+            <Descripcion>
+                La que tenga menos huecos
+            </Descripcion>
+        </Ruta>
+    </Requerimientos>
+</TRequerimiento>

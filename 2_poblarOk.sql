@@ -36,20 +36,70 @@ INSERT INTO ubicacion VALUES (2, 5, 'Mynte', '2 Mifflin Lane', 108.21, -7.35);
 INSERT INTO ubicacion VALUES (3, 6, 'Pixope', '97 Farwell Hill', 37.76, 12.98);
 
 --- CRUD solicitud 
-INSERT INTO solicitud VALUES (49166259, '11/8/2020', '6/8/2020', 'M', 7.54, 'P', NULL, 4, 121.49, 31.25, 108.21, -7.35);
-INSERT INTO solicitud VALUES (16789271, '6/5/2020', '3/3/2021', 'W', 6.3, 'A', NULL, 5, 37.76, 12.98, 121.49, 31.25);
-INSERT INTO solicitud VALUES (91769475, '2/3/2021', '1/11/2021', 'M', 6.88, 'C', NULL, 6, 108.21, -7.35, 121.49, 31.25);
+INSERT INTO solicitud VALUES (49166259, '11/8/2020', '6/8/2020', 'M', 7.54, 'P', '<TRequerimiento>
+    <DireccionOrigen>
+        Calle 123 # 45 - 56
+    </DireccionOrigen>
+    <DireccionDestino>
+        Calle 165 # 54 - 65
+    </DireccionDestino>
+    <Requerimientos>
+        <Vehiculo color="rojo">
+            <Descripcion>
+                Vehículo con baúl grande
+            </Descripcion>
+        </Vehiculo>
+    </Requerimientos>
+</TRequerimiento>', 4, 121.49, 31.25, 108.21, -7.35);
+INSERT INTO solicitud VALUES (16789271, '6/5/2020', '3/3/2021', 'W', 6.3, 'A', '<TRequerimiento>
+    <DireccionOrigen>
+        Calle 111 # 22 - 33
+    </DireccionOrigen>
+    <DireccionDestino>
+        Calle 112 # 33 - 45
+    </DireccionDestino>
+    <Requerimientos>
+        <Musica>
+            <Descripcion>
+                Musiquita suave del Sech
+            </Descripcion>
+        </Musica>
+        <Vehiculo color="azul">
+            <Descripcion>
+                Vehículo con baúl grande
+            </Descripcion>
+        </Vehiculo>
+        <Ruta>
+            <Descripcion>
+                La más corta pls
+            </Descripcion>
+        </Ruta>
+    </Requerimientos>
+</TRequerimiento>', 5, 37.76, 12.98, 121.49, 31.25);
+INSERT INTO solicitud VALUES (91769475, '2/3/2021', '1/11/2021', 'M', 6.88, 'C', '<TRequerimiento>
+    <DireccionOrigen>
+        Calle 45 # 56 - 67
+    </DireccionOrigen>
+    <DireccionDestino>
+        Calle 12 # 25 - 38
+    </DireccionDestino>
+    <Requerimientos>
+        <Musica>
+            <Descripcion>
+                Algo del silvio rodriguez
+            </Descripcion>
+        </Musica>
+        <Vehiculo color="verde">
+            <Descripcion>
+                Vehículo con ventanas eléctricas
+            </Descripcion>
+        </Vehiculo>
+        <Ruta>
+            <Descripcion>
+                La que tenga menos huecos
+            </Descripcion>
+        </Ruta>
+    </Requerimientos>
+</TRequerimiento>
+', 6, 108.21, -7.35, 121.49, 31.25);
 
-/*
-INSERT INTO PERSONA VALUES(null, 'CC', 12345, 'pepe', 'el pepe', null, '1234567891', 'email@email.com', 'Colombia');
-
-INSERT INTO CONDUCTOR VALUES (1, '1234567891', TO_DATE('13.09.2007','DD.MM.YYYY'), 'A');
-
-INSERT INTO TARJETA VALUES (123456789123456, 'BANCO1', TO_DATE(09.2027, 'MM.YYYY'));
-
-INSERT INTO CLIENTE VALUES (1, 123456789123456);
-
-INSERT INTO POSICION VALUES(2.2, 2.2);
-INSERT INTO POSICION VALUES(3.3, 3.3);
-
-INSERT INTO SOLICITUD VALUES(null, null, null, 'P', null, 'A', null, 6, 2.2, 2.2, 3.3, 3.3);*/
