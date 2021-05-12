@@ -186,10 +186,8 @@ CREATE OR REPLACE PACKAGE BODY PKG_SOLICITUDES AS
         xEstado IN CHAR,
         xDescripcion IN XMLType,
         xClienteId IN VARCHAR,
-        xLongitud2 IN NUMBER,
-        xLatitud2 IN NUMBER,
-        xLongitud1 IN NUMBER,
-        xLatitud1 IN NUMBER
+        xPosicion2 IN NUMBER,
+        xPosicion1 IN NUMBER
         ) IS
     BEGIN      
         INSERT INTO solicitud VALUES (
@@ -201,10 +199,8 @@ CREATE OR REPLACE PACKAGE BODY PKG_SOLICITUDES AS
             xEstado,
             xDescripcion,
             xClienteId,
-            xLongitud2,
-            xLatitud2,
-            xLongitud1,
-            xLatitud1
+            xPosicion2,
+            xPosicion1
         );
 
         COMMIT;
@@ -231,10 +227,8 @@ CREATE OR REPLACE PACKAGE BODY PKG_SOLICITUDES AS
         xFechaViaje IN DATE,
         xDescripcion IN XMLType,
         xEstado IN CHAR,
-        xLongitud2 IN NUMBER,
-        xLatitud2 IN NUMBER,
-        xLongitud1 IN NUMBER,
-        xLatitud1 IN NUMBER
+        xPosicion2 IN NUMBER,
+        xPosicion1 IN NUMBER
         ) Is
     BEGIN
         UPDATE solicitud
@@ -242,10 +236,8 @@ CREATE OR REPLACE PACKAGE BODY PKG_SOLICITUDES AS
             fechaviaje = xFechaViaje,
             descripcion = xDescripcion,
             estado = xEstado,
-            posicion_longitud2 = xLongitud2,
-            posicion_latitud2 = xLatitud2,
-            posicion_longitud = xLongitud1,
-            posicion_latitud = xLatitud1
+            posicion_2 = xPosicion2,
+            posicion_1 = xPosicion1
         WHERE codigo = xCodigo;
 
         COMMIT;

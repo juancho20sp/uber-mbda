@@ -33,6 +33,17 @@ END;
 
 /
 
+-- POSICION
+CREATE OR REPLACE TRIGGER POSITION_TRIGGER 
+BEFORE INSERT ON posicion 
+FOR EACH ROW
+BEGIN
+    SELECT POSICION_ID.NEXTVAL INTO :NEW.posicion_id FROM DUAL;
+  NULL;
+END;
+
+/
+
 -- SOLICITUD
 CREATE OR REPLACE TRIGGER SOLICITUD_TRIGGER 
 BEFORE INSERT ON SOLICITUD
@@ -152,8 +163,7 @@ BEGIN
     IF :new.id_ubicacion <> :old.id_ubicacion 
     OR :new.direccion <> :old.direccion 
     OR :new.cliente_id <> :old.cliente_id 
-    OR :new.latitud <> :old.latitud 
-    OR :new.longitud <> :old.longitud
+    OR :new.posicion_1 <> :old.posicion_1 
     THEN RAISE_APPLICATION_ERROR(-20002, 'Solo se puede modificar el nombre de la ubicación');
     END IF; 
 END;

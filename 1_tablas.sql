@@ -30,8 +30,9 @@ CREATE TABLE persona (
 );
 
 CREATE TABLE posicion (
-    longitud  NUMBER(9) NOT NULL,
-	latitud   NUMBER(9) NOT NULL    
+    posicion_id NUMBER(9) NOT NULL,
+    longitud    NUMBER(9) NOT NULL,
+	latitud     NUMBER(9) NOT NULL    
 );
 
 CREATE TABLE solicitud (
@@ -43,10 +44,8 @@ CREATE TABLE solicitud (
     estado              CHAR(1 CHAR) NOT NULL,
     descripcion         XMLType,
     cliente_id          NUMBER(9) NOT NULL,
-    posicion_longitud2  NUMBER(9) NOT NULL,
-    posicion_latitud2   NUMBER(9) NOT NULL,
-    posicion_longitud   NUMBER(9) NOT NULL,
-    posicion_latitud    NUMBER(9) NOT NULL
+    posicion_2          NUMBER(9) NOT NULL,
+    posicion_1          NUMBER(9) NOT NULL
 );
 
 CREATE TABLE tarjeta (
@@ -61,8 +60,7 @@ CREATE TABLE ubicacion (
 	cliente_id  	   NUMBER(9) NOT NULL,
     nombre             VARCHAR2(50 CHAR) NOT NULL,
     direccion          VARCHAR2(20) NOT NULL,
-	longitud           NUMBER(9) NOT NULL,
-    latitud            NUMBER(9) NOT NULL
+	posicion_1         NUMBER(9) NOT NULL
     
 );
 
@@ -90,8 +88,7 @@ CREATE TABLE vehiculo (
  
  ALTER TABLE persona ADD CONSTRAINT persona_pk PRIMARY KEY ( persona_id );
  
- ALTER TABLE posicion ADD CONSTRAINT posicion_pk PRIMARY KEY ( longitud,
-                                                              latitud );
+ ALTER TABLE posicion ADD CONSTRAINT posicion_pk PRIMARY KEY ( posicion_id );
 															  
 ALTER TABLE solicitud ADD CONSTRAINT solicitud_pk PRIMARY KEY ( codigo );	
 
@@ -121,16 +118,12 @@ ALTER TABLE solicitud
         REFERENCES cliente ( persona_id );
 
 ALTER TABLE solicitud
-    ADD CONSTRAINT solicitud_posicion_fk FOREIGN KEY ( posicion_longitud,
-                                                       posicion_latitud )
-        REFERENCES posicion ( longitud,
-                              latitud );
+    ADD CONSTRAINT solicitud_posicion_fk FOREIGN KEY ( posicion_1 )
+        REFERENCES posicion ( posicion_id );
 
 ALTER TABLE solicitud
-    ADD CONSTRAINT solicitud_posicion_fkv2 FOREIGN KEY ( posicion_longitud2,
-                                                         posicion_latitud2 )
-        REFERENCES posicion ( longitud,
-                              latitud );	
+    ADD CONSTRAINT solicitud_posicion_fkv2 FOREIGN KEY ( posicion_2 )
+        REFERENCES posicion ( posicion_id );	
 
 ALTER TABLE tarjeta
     ADD CONSTRAINT tarjeta_cliente_fk FOREIGN KEY ( cliente_id )
@@ -141,10 +134,8 @@ ALTER TABLE ubicacion
         REFERENCES cliente ( persona_id );
 
 ALTER TABLE ubicacion
-    ADD CONSTRAINT ubicacion_posicion_fk FOREIGN KEY ( longitud,
-                                                       latitud )
-        REFERENCES posicion ( longitud,
-                              latitud );	
+    ADD CONSTRAINT ubicacion_posicion_fk FOREIGN KEY ( posicion_1 )
+        REFERENCES posicion ( posicion_id );	
 
 ALTER TABLE vehiculo
     ADD CONSTRAINT vehiculo_conductor_fk FOREIGN KEY ( conductor_id )

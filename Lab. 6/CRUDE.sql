@@ -63,10 +63,8 @@ CREATE OR REPLACE PACKAGE PKG_SOLICITUDES AS
         xEstado IN CHAR,
         xDescripcion IN XMLType,
         xClienteId IN VARCHAR,
-        xLongitud2 IN NUMBER,
-        xLatitud2 IN NUMBER,
-        xLongitud1 IN NUMBER,
-        xLatitud1 IN NUMBER
+        xPosicion2 IN NUMBER,
+        xPosicion1 IN NUMBER
         );
 
     -- READ ALL DRIVERS
@@ -77,10 +75,8 @@ CREATE OR REPLACE PACKAGE PKG_SOLICITUDES AS
         xFechaViaje IN DATE,
         xDescripcion IN XMLType,
         xEstado IN CHAR,
-        xLongitud2 IN NUMBER,
-        xLatitud2 IN NUMBER,
-        xLongitud1 IN NUMBER,
-        xLatitud1 IN NUMBER
+        xPosicion2 IN NUMBER,
+        xPosicion1 IN NUMBER
         );
 
 END PKG_SOLICITUDES;

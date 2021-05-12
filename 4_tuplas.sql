@@ -8,7 +8,7 @@ CHECK(tipo IN ('TI', 'CC', 'CE', 'PS'));
  
 -- TCorreo
 ALTER TABLE PERSONA ADD CONSTRAINT CK_CORREO
-CHECK(REGEXP_LIKE (correo, '[A-Z0-9._%-]+@[A-Z0-9._%-]+\.[A-Z]{2,4}'))
+CHECK(REGEXP_LIKE (correo, '[A-Z0-9._%-]+@[A-Z0-9._%-]+\.[A-Z]{2,4}'));
 
 
 -- TEstadoConductor
