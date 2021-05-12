@@ -54,3 +54,65 @@ END PKG_CLIENT;
 
 /
 
+-- SOLICITUDES
+CREATE OR REPLACE PACKAGE PKG_SOLICITUDES AS
+    PROCEDURE ADD_SOLICITUD(
+        xFechaViaje IN DATE,
+        xPlataforma IN CHAR,
+        xPrecio IN NUMBER,
+        xEstado IN CHAR,
+        xDescripcion IN XMLType,
+        xClienteId IN VARCHAR,
+        xLongitud2 IN NUMBER,
+        xLatitud2 IN NUMBER,
+        xLongitud1 IN NUMBER,
+        xLatitud1 IN NUMBER
+        );
+
+    -- READ ALL DRIVERS
+    FUNCTION READ_SOLICITUDES RETURN SYS_REFCURSOR;
+
+    PROCEDURE UPDATE_SOLICITUD(
+        xCodigo IN NUMBER,
+        xFechaViaje IN DATE,
+        xDescripcion IN XMLType,
+        xEstado IN CHAR,
+        xLongitud2 IN NUMBER,
+        xLatitud2 IN NUMBER,
+        xLongitud1 IN NUMBER,
+        xLatitud1 IN NUMBER
+        );
+
+END PKG_SOLICITUDES;
+
+/
+
+
+-- VEHICULOS
+CREATE OR REPLACE PACKAGE PKG_VEHICULOS AS
+    PROCEDURE ADD_VEHICULO(
+        xPlaca IN VARCHAR,
+        xLlantas IN NUMBER,
+        xCilindraje IN NUMBER,
+        xYear IN NUMBER,
+        xTipo IN CHAR,
+        xEstado IN CHAR,
+        xPuertas IN NUMBER,
+        xPasajeros IN NUMBER,
+        xCarga IN NUMBER,
+        xConductor_id IN NUMBER
+        );
+
+    -- READ ALL VEHICLES
+    FUNCTION READ_VEHICULOS RETURN SYS_REFCURSOR;
+
+    PROCEDURE UPDATE_VEHICULOS(
+        xPlaca IN VARCHAR,
+        xEstado IN CHAR,
+        xConductor IN NUMBER
+        );
+
+END PKG_VEHICULOS;
+
+/
+

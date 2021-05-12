@@ -177,6 +177,167 @@ END PKG_CLIENT;
 
 /
 
+-- SOLICITUD
+CREATE OR REPLACE PACKAGE BODY PKG_SOLICITUDES AS
+    PROCEDURE ADD_SOLICITUD(
+        xFechaViaje IN DATE,
+        xPlataforma IN CHAR,
+        xPrecio IN NUMBER,
+        xEstado IN CHAR,
+        xDescripcion IN XMLType,
+        xClienteId IN VARCHAR,
+        xLongitud2 IN NUMBER,
+        xLatitud2 IN NUMBER,
+        xLongitud1 IN NUMBER,
+        xLatitud1 IN NUMBER
+        ) IS
+    BEGIN      
+        INSERT INTO solicitud VALUES (
+            NULL,
+            NULL,
+            xFechaViaje,
+            xPlataforma,
+            xPrecio,
+            xEstado,
+            xDescripcion,
+            xClienteId,
+            xLongitud2,
+            xLatitud2,
+            xLongitud1,
+            xLatitud1
+        );
+
+        COMMIT;
+
+        EXCEPTION 
+        WHEN OTHERS THEN 
+            ROLLBACK;
+            RAISE_APPLICATION_ERROR(-20001,'ERROR AL INSERTAR LA SOLICITUD');
+        
+    END;  
+
+    -- READ ALL SOLICITUDES
+    FUNCTION READ_SOLICITUDES RETURN SYS_REFCURSOR 
+    IS INF_SOLICITUD SYS_REFCURSOR;
+    BEGIN
+        OPEN INF_SOLICITUD FOR
+            SELECT *
+            FROM solicitud;
+        RETURN INF_SOLICITUD ;
+    END;
+
+    PROCEDURE UPDATE_SOLICITUD(
+        xCodigo IN NUMBER,
+        xFechaViaje IN DATE,
+        xDescripcion IN XMLType,
+        xEstado IN CHAR,
+        xLongitud2 IN NUMBER,
+        xLatitud2 IN NUMBER,
+        xLongitud1 IN NUMBER,
+        xLatitud1 IN NUMBER
+        ) Is
+    BEGIN
+        UPDATE solicitud
+        SET
+            fechaviaje = xFechaViaje,
+            descripcion = xDescripcion,
+            estado = xEstado,
+            posicion_longitud2 = xLongitud2,
+            posicion_latitud2 = xLatitud2,
+            posicion_longitud = xLongitud1,
+            posicion_latitud = xLatitud1
+        WHERE codigo = xCodigo;
+
+        COMMIT;
+
+        EXCEPTION 
+        WHEN OTHERS THEN 
+            ROLLBACK;
+            RAISE_APPLICATION_ERROR(-20002,'ERROR AL MODIFCAR LA SOLICITUD'); 
+    END;
+END PKG_SOLICITUDES;
+
+/
+
+-- VEHICULOS
+CREATE OR REPLACE PACKAGE BODY PKG_VEHICULOS AS
+    PROCEDURE ADD_VEHICULO(
+        xPlaca IN VARCHAR,
+        xLlantas IN NUMBER,
+        xCilindraje IN NUMBER,
+        xYear IN NUMBER,
+        xTipo IN CHAR,
+        xEstado IN CHAR,
+        xPuertas IN NUMBER,
+        xPasajeros IN NUMBER,
+        xCarga IN NUMBER,
+        xConductor_id IN NUMBER
+        ) IS
+    BEGIN      
+        INSERT INTO vehiculo VALUES (
+            xPlaca,
+            xLlantas,
+            xCilindraje,
+            xYear,
+            xTipo,
+            xEstado,
+            xPuertas,
+            xPasajeros,
+            xCarga,
+            xConductor_id
+            
+        );
+
+        COMMIT;
+
+        EXCEPTION 
+        WHEN OTHERS THEN 
+            ROLLBACK;
+            RAISE_APPLICATION_ERROR(-20001,'ERROR AL INSERTAR EL VEHÍCULO');
+        
+    END;  
+
+    -- READ ALL VEHICLES
+    FUNCTION READ_VEHICULOS RETURN SYS_REFCURSOR 
+    IS INF_VEHICULO SYS_REFCURSOR;
+    BEGIN
+        OPEN INF_VEHICULO FOR
+            SELECT *
+            FROM vehiculo;
+        RETURN INF_VEHICULO ;
+    END;
+
+    PROCEDURE UPDATE_VEHICULOS(
+        xPlaca IN VARCHAR,
+        xEstado IN CHAR,
+        xConductor IN NUMBER
+        ) Is
+    BEGIN
+        UPDATE vehiculo
+        SET
+            estado = xEstado,
+            conductor_id = xConductor
+        WHERE placa = xPlaca;
+
+        COMMIT;
+
+        EXCEPTION 
+        WHEN OTHERS THEN 
+            ROLLBACK;
+            RAISE_APPLICATION_ERROR(-20002,'ERROR AL MODIFCAR EL VEHÍCULO '); 
+    END;
+END PKG_VEHICULOS;
+
+/
+
+
+
+
+
+
+
+
+
 
 
 
