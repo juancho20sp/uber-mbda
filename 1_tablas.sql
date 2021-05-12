@@ -1,14 +1,14 @@
 --- TABLAS
 CREATE TABLE cliente (
-    persona_id  NUMBER(9) NOT NULL,
-    tarjeta     NUMBER(15) NOT NULL
+    persona_id  NUMBER(9) NOT NULL
 );
 
 CREATE TABLE conductor (
     persona_id       NUMBER(9) NOT NULL,
     licencia         VARCHAR2(10) NOT NULL,
     fechanacimiento  DATE NOT NULL,
-    estado           CHAR(1 CHAR) NOT NULL
+    estado           CHAR(1 CHAR) NOT NULL,
+    estrellas        NUMBER(1) NOT NULL
 );
 
 CREATE TABLE idioma (
@@ -19,12 +19,12 @@ CREATE TABLE idioma (
 
 CREATE TABLE persona (
     persona_id    NUMBER(9) NOT NULL,
-    tipo          VARCHAR2(2 CHAR) NOT NULL,
-    numero        NUMBER(20) NOT NULL,
-    nombre        VARCHAR2(50 CHAR) NOT NULL,
-    apellidos     VARCHAR2(50 CHAR) NOT NULL,
+    tipo          VARCHAR2(2) NOT NULL,
+    numero        VARCHAR2(20) NOT NULL,
+    nombre        VARCHAR2(50) NOT NULL,
+    apellidos     VARCHAR2(50),
     registro      DATE NOT NULL,
-    celular       NUMBER(10) NOT NULL,
+    celular       VARCHAR2(10) NOT NULL,
     correo        VARCHAR2(50 CHAR) NOT NULL,
     nacionalidad  VARCHAR2(50 CHAR)
 );
