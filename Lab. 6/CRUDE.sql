@@ -42,6 +42,20 @@ CREATE OR REPLACE PACKAGE PKG_CLIENT AS
         xIdioma IN VARCHAR
         );
 
+    PROCEDURE ADD_POSICION(
+       xLongitud IN NUMBER,
+        xLatitud IN NUMBER
+        );
+
+    PROCEDURE ADD_FAV_UBICACION(
+        xCliente IN NUMBER,
+        xNombre IN VARCHAR,
+        xDireccion IN VARCHAR,
+        xPosicion IN NUMBER
+        );
+
+
+
     -- READ ALL DRIVERS
     FUNCTION READ_CLIENT RETURN SYS_REFCURSOR;
 
@@ -71,12 +85,10 @@ CREATE OR REPLACE PACKAGE PKG_SOLICITUDES AS
     FUNCTION READ_SOLICITUDES RETURN SYS_REFCURSOR;
 
     PROCEDURE UPDATE_SOLICITUD(
-        xCodigo IN NUMBER,
+        xCliente IN NUMBER,
         xFechaViaje IN DATE,
-        xDescripcion IN XMLType,
         xEstado IN CHAR,
-        xPosicion2 IN NUMBER,
-        xPosicion1 IN NUMBER
+        xPrecio IN NUMBER
         );
 
 END PKG_SOLICITUDES;

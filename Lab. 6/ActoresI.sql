@@ -1,0 +1,44 @@
+--- CLIENTE
+CREATE OR REPLACE PACKAGE BODY PA_CLIENTE IS
+    PROCEDURE ADD_SOLICITUD(
+        xClienteId IN NUMBER,
+        xPosicion2 IN NUMBER,
+        xPosicion1 IN NUMBER
+    ) IS
+    BEGIN
+        PKG_SOLICITUDES.ADD_SOLICITUD(NULL, 'A', NULL, NULL, NULL, xClienteId, xPosicion2, xPosicion1);
+    END;
+
+    PROCEDURE ADD_POSICION(
+        xLongitud IN NUMBER,
+        xLatitud IN NUMBER
+    ) IS
+    BEGIN
+        PKG_SOLICITUDES.ADD_POSICION(xLongitud, xLatitud);
+    END;
+
+    PROCEDURE UPDATE_SOLICITUD(
+        xClienteId IN NUMBER,
+        xFechaViaje IN DATE,
+        xPrecio IN NUMBER, 
+        xEstado IN CHAR
+    ) IS 
+    BEGIN
+        PKG_SOLICITUDES.UPDATE_SOLICITUD(xClienteId, xFechaViaje, xEstado, xPrecio);
+    END;
+        
+END PA_CLIENTE ;
+/
+
+--- ANALISTA CLIENTES
+CREATE OR REPLACE PACKAGE BODY PA_ANALISTA_CLIENTES IS
+    FUNCTION READ_HIGHEST_MOUNTS
+        RETURN SYS_REFCURSOR;
+
+    FUNCTION READ_MOST_CANCELED_CLIENTS
+        RETURN SYS_REFCURSOR;
+
+
+        
+END PA_ANALISTA_CLIENTES ;
+/

@@ -148,6 +148,43 @@ CREATE OR REPLACE PACKAGE BODY PKG_CLIENT AS
         END;
     END;  
 
+
+    PROCEDURE ADD_POSICION(
+        xLongitud IN NUMBER,
+        xLatitud IN NUMBER
+        ) IS
+    BEGIN 
+        INSERT INTO posicion VALUES (
+            NULL,
+            xLongitud,
+            xLatitud        
+        );
+
+        COMMIT;
+
+        EXCEPTION 
+        WHEN OTHERS THEN 
+            ROLLBACK;
+            RAISE_APPLICATION_ERROR(-20001,'ERROR AL INSERTAR LA SOLICITUD');
+    END;  
+
+
+    PROCEDURE ADD_FAV_UBICACION(
+        xCliente IN NUMBER,
+        xNombre IN VARCHAR,
+        xDireccion IN VARCHAR,
+        xPosicion IN NUMBER
+        ) IS 
+    BEGIN        
+        INSERT INTO ubicacion VALUES (NULL, xCliente, xNombre, xDireccion, xPosicion);
+        COMMIT;
+
+        EXCEPTION 
+        WHEN OTHERS THEN 
+            ROLLBACK;
+            RAISE_APPLICATION_ERROR(-20001,'ERROR AL INSERTAR LA UBICACIÓN FAVORITA');
+    END;
+
     -- READ ALL DRIVERS
     FUNCTION READ_CLIENT RETURN SYS_REFCURSOR 
     IS INF_CLIENT SYS_REFCURSOR;
@@ -223,22 +260,18 @@ CREATE OR REPLACE PACKAGE BODY PKG_SOLICITUDES AS
     END;
 
     PROCEDURE UPDATE_SOLICITUD(
-        xCodigo IN NUMBER,
+        xCliente IN NUMBER,
         xFechaViaje IN DATE,
-        xDescripcion IN XMLType,
         xEstado IN CHAR,
-        xPosicion2 IN NUMBER,
-        xPosicion1 IN NUMBER
+        xPrecio IN NUMBER
         ) Is
     BEGIN
         UPDATE solicitud
         SET
             fechaviaje = xFechaViaje,
-            descripcion = xDescripcion,
             estado = xEstado,
-            posicion_2 = xPosicion2,
-            posicion_1 = xPosicion1
-        WHERE codigo = xCodigo;
+            precio = xPrecio
+        WHERE cliente_id = xCliente;
 
         COMMIT;
 
