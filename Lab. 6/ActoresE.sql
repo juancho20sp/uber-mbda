@@ -1,5 +1,16 @@
 --- CLIENTE
 CREATE OR REPLACE PACKAGE PA_CLIENTE IS
+    PROCEDURE ADD_CLIENT(
+        xTipoId IN VARCHAR,
+        xNumeroId IN VARCHAR,
+        xNombre IN VARCHAR,
+        xCelular IN VARCHAR,
+        xEmail IN VARCHAR,
+        xLicencia IN VARCHAR,
+        xNacimiento IN DATE,
+        xIdioma IN VARCHAR
+        );
+    
     PROCEDURE ADD_SOLICITUD(
         xClienteId IN NUMBER,
         xPosicion2 IN NUMBER,
@@ -29,11 +40,22 @@ CREATE OR REPLACE PACKAGE PA_CLIENTE IS
         xPrecio IN NUMBER, 
         xEstado IN CHAR
     );
+
+    -- READ POSICION
+    FUNCTION READ_POSICION RETURN SYS_REFCURSOR;
         
     -- READ FAV LOCATION
     FUNCTION READ_FAV_LOCATION(
         xIdPersona IN NUMBER
     ) RETURN SYS_REFCURSOR;
+
+    -- READ CLIENTES
+    FUNCTION READ_CLIENT RETURN SYS_REFCURSOR;
+
+    -- READ SOLICITUDES
+    FUNCTION READ_SOLICITUD (
+        xIdPersona IN NUMBER
+    )RETURN SYS_REFCURSOR;
 
 END PA_CLIENTE ;
 /

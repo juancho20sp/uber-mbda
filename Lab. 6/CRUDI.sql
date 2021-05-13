@@ -54,7 +54,9 @@ CREATE OR REPLACE PACKAGE BODY PKG_DRIVER AS
     BEGIN
         OPEN INF_DRIVERS FOR
             SELECT *
-            FROM conductor;
+            FROM conductor
+            JOIN PERSONA
+            ON conductor.persona_id = PERSONA.persona_id;
         RETURN INF_DRIVERS ;
     END;
 
@@ -67,7 +69,9 @@ CREATE OR REPLACE PACKAGE BODY PKG_DRIVER AS
         OPEN INF_SPECIFIC_DRIVER FOR
             SELECT *
             FROM conductor
-            WHERE persona_id = xIdPersona;
+            JOIN PERSONA
+            ON conductor.persona_id = PERSONA.persona_id
+            WHERE conductor.persona_id = xIdPersona;
         RETURN INF_SPECIFIC_DRIVER ;
     END;
 
@@ -200,17 +204,29 @@ CREATE OR REPLACE PACKAGE BODY PKG_CLIENT AS
             RAISE_APPLICATION_ERROR(-20001,'ERROR AL ELIMINAR LA UBICACIÓN FAVORITA');
     END;
 
-    -- READ ALL DRIVERS
+    -- READ POSITION
+    FUNCTION READ_POSITION RETURN SYS_REFCURSOR
+     IS RES SYS_REFCURSOR;
+    BEGIN
+        OPEN RES FOR
+            SELECT *
+            FROM posicion;
+        RETURN RES ;
+    END;
+
+    -- READ ALL CLIENTS
     FUNCTION READ_CLIENT RETURN SYS_REFCURSOR 
     IS INF_CLIENT SYS_REFCURSOR;
     BEGIN
         OPEN INF_CLIENT FOR
             SELECT *
-            FROM cliente;
+            FROM cliente
+            JOIN PERSONA
+            ON CLIENTE.persona_id = PERSONA.persona_id;
         RETURN INF_CLIENT ;
     END;
 
-    -- READ SPECIFIC DRIVER
+    -- READ SPECIFIC CLIENT
     FUNCTION READ_SPEC_CLIENT(
         xIdPersona IN NUMBER
     ) RETURN SYS_REFCURSOR  
@@ -219,7 +235,9 @@ CREATE OR REPLACE PACKAGE BODY PKG_CLIENT AS
         OPEN INF_SPECIFIC_CLIENT FOR
             SELECT *
             FROM cliente
-            WHERE persona_id = xIdPersona;
+            JOIN PERSONA
+            ON CLIENTE.persona_id = PERSONA.persona_id
+            WHERE CLIENTE.persona_id = xIdPersona;
         RETURN INF_SPECIFIC_CLIENT ;
     END;
 
@@ -234,6 +252,21 @@ CREATE OR REPLACE PACKAGE BODY PKG_CLIENT AS
             FROM UBICACION
             WHERE CLIENTE_ID = xIdPersona;
         RETURN INF_FAV_LOCATION ;
+    END;
+
+    -- READ SOLICITUD
+    FUNCTION READ_SOLICITUD(
+        xIdPersona IN NUMBER
+    ) RETURN SYS_REFCURSOR 
+    IS RES SYS_REFCURSOR;
+    BEGIN
+        OPEN RES FOR
+            SELECT *
+            FROM SOLICITUD
+            JOIN persona 
+            ON SOLICITUD.cliente_id = persona.persona_id
+            WHERE SOLICITUD.cliente_id = xIdPersona;
+        RETURN RES ;
     END;
 
 
@@ -356,7 +389,9 @@ CREATE OR REPLACE PACKAGE BODY PKG_VEHICULOS AS
     BEGIN
         OPEN INF_VEHICULO FOR
             SELECT *
-            FROM vehiculo;
+            FROM vehiculo
+            JOIN CONDUCTOR 
+            ON VEHICULO.conductor_id = CONDUCTOR.persona_id;
         RETURN INF_VEHICULO ;
     END;
 
