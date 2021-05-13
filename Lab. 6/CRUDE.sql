@@ -58,11 +58,6 @@ CREATE OR REPLACE PACKAGE PKG_CLIENT AS
         xCliente IN NUMBER,
         xNombre IN VARCHAR
         );
-
-
-
-    
-    
     
     -- READ POSITION
     FUNCTION READ_POSITION RETURN SYS_REFCURSOR;
