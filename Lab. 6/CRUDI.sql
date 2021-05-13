@@ -192,8 +192,6 @@ CREATE OR REPLACE PACKAGE BODY PKG_CLIENT AS
         ) IS 
     BEGIN    
         DELETE FROM UBICACION WHERE cliente_id = xCliente AND nombre = xNombre;
-
-        INSERT INTO ubicacion VALUES (NULL, xCliente, xNombre, xDireccion, xPosicion);
         COMMIT;
 
         EXCEPTION 

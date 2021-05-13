@@ -61,10 +61,53 @@ END PA_CLIENTE ;
 --- ANALISTA CLIENTES
 CREATE OR REPLACE PACKAGE BODY PA_ANALISTA_CLIENTES IS
     FUNCTION READ_HIGHEST_MOUNTS
-        RETURN SYS_REFCURSOR;
+        RETURN SYS_REFCURSOR
+    IS RES SYS_REFCURSOR;
+    BEGIN
+        OPEN RES FOR
+            SELECT 
+            PERSONA.tipo AS TDNI,
+            PERSONA.numero AS DNI,
+            PERSONA.nombre AS NOMBRE,
+            PERSONA.apellidos AS APELLIDO,
+            COUNT(solicitud.cliente_id) AS MONTO
+            FROM persona
+            JOIN SOLICITUD
+            ON SOLICITUD.cliente_id = persona.persona_id
+            WHERE ROWNUM <= 10
+            GROUP BY PERSONA.tipo, PERSONA.numero, PERSONA.nombre, PERSONA.apellidos            
+            ORDER BY MONTO DESC;
+        RETURN RES ;
+    END;
+  
 
     FUNCTION READ_MOST_CANCELED_CLIENTS
-        RETURN SYS_REFCURSOR;
+        RETURN SYS_REFCURSOR
+         IS RES SYS_REFCURSOR;
+    BEGIN
+        OPEN RES FOR
+            SELECT 
+            PERSONA.tipo AS TDNI,
+            PERSONA.numero AS DNI,
+            PERSONA.nombre AS NOMBRE,
+            SOLICITUD.codigo AS ID_SOLICITUD,
+            SOLICITUD.fechacreacion AS FECHA_CREACION,
+            SOLICITUD.posicion_1 AS ORIGEN,
+            SOLICITUD.posicion_2 AS DESTINO,
+            SOLICITUD.plataforma AS PLATAFORMA,
+            SOLICITUD.precio AS PRECIO,
+            SOLICITUD.estado AS ESTADO,
+            COUNT(solicitud.cliente_id) AS NUM_CANCELADOS
+            FROM persona
+            JOIN SOLICITUD
+            ON SOLICITUD.cliente_id = persona.persona_id
+            WHERE estado LIKE 'C'
+            GROUP BY PERSONA.tipo, PERSONA.numero, PERSONA.nombre, PERSONA.apellidos, SOLICITUD.codigo, 
+            SOLICITUD.fechacreacion, SOLICITUD.posicion_1, SOLICITUD.posicion_2, SOLICITUD.plataforma, SOLICITUD.precio, 
+            SOLICITUD.estado            
+            ORDER BY NUM_CANCELADOS DESC;
+        RETURN RES ;
+    END;
 
 
         
