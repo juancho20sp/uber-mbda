@@ -11,6 +11,18 @@ CREATE OR REPLACE PACKAGE PA_CLIENTE IS
         xLatitud IN NUMBER
     );
 
+    PROCEDURE ADD_FAV_UBICACION(
+        xCliente IN NUMBER,
+        xNombre IN VARCHAR,
+        xDireccion IN VARCHAR,
+        xPosicion IN NUMBER
+        );
+
+    PROCEDURE DELETE_FAV_UBICACION(
+        xCliente IN NUMBER,
+        xNombre IN VARCHAR
+        );
+
     PROCEDURE UPDATE_SOLICITUD(
         xClienteId IN NUMBER,
         xFechaViaje IN DATE,
@@ -18,6 +30,11 @@ CREATE OR REPLACE PACKAGE PA_CLIENTE IS
         xEstado IN CHAR
     );
         
+    -- READ FAV LOCATION
+    FUNCTION READ_FAV_LOCATION(
+        xIdPersona IN NUMBER
+    ) RETURN SYS_REFCURSOR;
+
 END PA_CLIENTE ;
 /
 

@@ -14,7 +14,17 @@ CREATE OR REPLACE PACKAGE BODY PA_CLIENTE IS
         xLatitud IN NUMBER
     ) IS
     BEGIN
-        PKG_SOLICITUDES.ADD_POSICION(xLongitud, xLatitud);
+        PKG_CLIENT.ADD_POSICION(xLongitud, xLatitud);
+    END;
+
+    PROCEDURE ADD_FAV_UBICACION(
+        xCliente IN NUMBER,
+        xNombre IN VARCHAR,
+        xDireccion IN VARCHAR,
+        xPosicion IN NUMBER
+        ) IS
+    BEGIN
+        PKG_CLIENT.ADD_FAV_UBICACION(xCliente, xNombre, xDireccion, xPosicion);
     END;
 
     PROCEDURE UPDATE_SOLICITUD(
@@ -26,6 +36,24 @@ CREATE OR REPLACE PACKAGE BODY PA_CLIENTE IS
     BEGIN
         PKG_SOLICITUDES.UPDATE_SOLICITUD(xClienteId, xFechaViaje, xEstado, xPrecio);
     END;
+
+    PROCEDURE DELETE_FAV_UBICACION(
+        xCliente IN NUMBER,
+        xNombre IN VARCHAR
+        ) IS 
+    BEGIN
+        PKG_CLIENT.DELETE_FAV_UBICACION(xCliente, xNombre);
+    END;
+
+    -- READ FAV LOCATION
+    FUNCTION READ_FAV_LOCATION(
+        xIdPersona IN NUMBER
+    ) RETURN SYS_REFCURSOR
+    IS FAV_LOC SYS_REFCURSOR;
+    BEGIN
+        FAV_LOC := PKG_CLIENT.READ_FAV_LOCATION(xIdPersona);
+        RETURN FAV_LOC; 
+    END;    
         
 END PA_CLIENTE ;
 /
